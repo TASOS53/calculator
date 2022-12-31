@@ -17,19 +17,17 @@ int main(int argc , char *argv[]){
             y= atoi(argv[i+1]);
             x= atoi(argv[i+2]);
             sum=x+y;
+            printf("num1 + num2 = %d\n",sum);
+            break;
+        }
+        else
+        {
+            printf("correct syntax is calc -a <num1,num2>\n");
             break;
         }
        
-       
     }
-    if(equalA==0 || equalAdd==0)
-    {
-        printf("num1 + num2 = %d\n",sum);
-    }
-    else
-    {
-        printf("correct syntax is calc -a <num1,num2>\n");
-    }
+    
 
     
     return 0;
