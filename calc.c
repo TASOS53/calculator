@@ -23,21 +23,28 @@ int main(int argc , char *argv[]){
             if(equalM==0 || equalMulitply==0)
             {
                 p=x*y;
-                printf("num1 * num2 = %d\n",p);
+                printf("%d * %d = %d\n",x,y,p);
             }
             else
             {
                 sum=x+y;
-                printf("num1 + num2 = %d\n",sum);
+                printf("%d + %d = %d\n",x,y,sum);
             }
             
             
-            break;
+            
         }
         else
         {
-            printf("correct syntax is: calc <option> <num1,num2>\n");
-            break;
+            if(atoi(argv[i])==y || atoi(argv[i])==x)
+            {
+                continue;
+            }
+            else
+            {
+                printf("correct syntax is: calc <option> <num1,num2>\n");
+                break;
+            }
         }
        
     }
