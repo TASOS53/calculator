@@ -4,12 +4,14 @@
 
 int main(int argc , char *argv[]){
 
-    int i,y,x,p;
+    int i,y,x,p,new_digit,current_number=0;
     int equalA;
     int equalAdd;
     int equalM;
     int equalMulitply;
     int sum=0;
+    char ch;
+
     for(i=1; i<=argc-1; i++)
     {
         equalM= strcmp("-m",argv[i]);
@@ -18,33 +20,44 @@ int main(int argc , char *argv[]){
         equalAdd= strcmp("--add",argv[i]);
         if (equalA==0 || equalAdd==0|| equalM==0 || equalMulitply==0)
         {
-            y= atoi(argv[i+1]);
-            x= atoi(argv[i+2]);
+            ch=*argv[i+1];
+            current_number=0;
+            while(ch!='\0')
+            {   
+                new_digit= ch - '0' ; // convert digit to integer
+                current_number = (current_number*10) + new_digit;
+                ch= *(argv[i+1] +1);
+            }
+            y=  current_number;
+            current_number=0;
+            ch=*argv[i+2];
+            while(ch!='\0')
+            {   
+                new_digit= ch - '0' ; // convert digit to integer
+                current_number = (current_number*10) + new_digit;
+                ch= *(argv[i+2] +1);
+            }
+            x=  current_number;
+
+
             if(equalM==0 || equalMulitply==0)
             {
-                p=x*y;
-                printf("%d * %d = %d\n",x,y,p);
+                p=y*x;
+                printf("%d * %d = %d\n",y,x,p);
             }
             else
             {
-                sum=x+y;
-                printf("%d + %d = %d\n",x,y,sum);
+                sum=y+x;
+                printf("%d + %d = %d\n",y,x,sum);
             }
             
-            
+           i+=2; //skip next two arguments when user request addition or multiplication 
             
         }
         else
         {
-            if(atoi(argv[i])==y || atoi(argv[i])==x)
-            {
-                continue;
-            }
-            else
-            {
                 printf("correct syntax is: calc <option> <num1,num2>\n");
                 break;
-            }
         }
        
     }
