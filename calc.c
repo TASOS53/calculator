@@ -9,8 +9,8 @@
 
 int main(int argc , char *argv[]){
 
-    int i;
-    float y,x;
+    int i, temp1,temp2;
+    float y=0,x=0;
     int equalA;
     int equalAdd;
     int equalM;
@@ -20,19 +20,34 @@ int main(int argc , char *argv[]){
     
 
     i=1;
-    while(i<=argc-1)
+    while(i<=argc-1) //Όσο το ι είναι μικρότερο ή ίσο με τον αριθμό των ορισμάτων που έχουν δοθεί απο τον χρήστη
     {
         equalM= strcmp("-m",argv[i]);
         equalMulitply= strcmp("--multiply",argv[i]);
         equalA= strcmp("-a",argv[i]);
         equalAdd= strcmp("--add",argv[i]);
-        if (equalA==0 || equalAdd==0|| equalM==0 || equalMulitply==0)
+        if (equalA==0 || equalAdd==0|| equalM==0 || equalMulitply==0)//Η strcmp(); επιστρέφει 0 , αν βρεθεί ο αντίστοιχος χαρακτήρας που αναζητώ
         {
             //get first number
-            y = my_atoi(argv[i+1]);
             
+            temp1 = my_atoi(argv[i+1],&y) ;
+            if (temp1==1)
+            {
+                printf("Wrong arguments has been inserted!!!\n");
+                printf("The programm will be terminated");
+                return 1;
+            }
+        
             //get second number
-            x= my_atoi(argv[i+2]);
+            temp2 = my_atoi(argv[i+2],&x);
+            if (temp2==1)
+            {
+                printf("Wrong arguments has been inserted!!!");
+                printf("The programm will be terminated");
+                return 1;
+            }
+
+
 
             //calculate 
             if(equalM==0 || equalMulitply==0)
@@ -46,7 +61,7 @@ int main(int argc , char *argv[]){
                 printf("%f + %f = %f\n",y,x,addition_result);
             }
             
-            i+=2; //skip next two arguments when user request addition or multiplication 
+            i+=2; //skip next two arguments when user requestς addition or multiplication 
             
         }
         else
